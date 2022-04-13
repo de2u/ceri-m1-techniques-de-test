@@ -33,7 +33,7 @@
     </properties>
 
     <build>
-        <defaultGoal>install</defaultGoal>
+        <defaultGoal>clean test</defaultGoal>
     </build>
     
 </project>
