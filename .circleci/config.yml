@@ -15,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Build
+          command: mvn -B -DskipTests package clean
+      - run:
           name: Test
           command: nvm test
 
