@@ -25,6 +25,8 @@ jobs:
           command: mvn test
       - store_artifacts:
           path: target
+      - codecov/upload:
+          file:
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -35,7 +37,3 @@ workflows:
         branches:
           only:
             - master
-  upload-to-codecov:
-    jobs:
-      - checkout
-      - codecov/upload
