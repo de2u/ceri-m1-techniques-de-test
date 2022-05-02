@@ -3,6 +3,9 @@
 [![CircleCI](https://circleci.com/gh/de2u/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://circleci.com/gh/de2u/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/gh/de2u/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=WWO45UNQGW)](https://codecov.io/gh/de2u/ceri-m1-techniques-de-test)
 
+Denis Werle  
+M1 Gr. IA classique
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
