@@ -25,7 +25,7 @@ public class IPokedexFactoryTest {
 
     @Test
     public void createPokedexTest() {
-        Assert.assertEquals(mockedPokedexFactory.createPokedex(mockedMetadataProvider, mockedPokemonFactory).size(), 0);
+        Assert.assertEquals(0, mockedPokedexFactory.createPokedex(mockedMetadataProvider, mockedPokemonFactory).size());
     }
 
 }
