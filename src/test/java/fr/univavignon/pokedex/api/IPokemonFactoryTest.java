@@ -7,18 +7,18 @@ import org.mockito.Mockito;
 
 public class IPokemonFactoryTest {
 
-    IPokemonFactory mockedPokemonFactory;
+    IPokemonFactory pokemonFactory;
     Pokemon pokemon;
 
     @Before
     public void init() {
         pokemon = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
-        mockedPokemonFactory = Mockito.mock(IPokemonFactory.class);
-        Mockito.when(mockedPokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemon);
+        pokemonFactory = new RocketPokemonFactory();
+        //Mockito.when(mockedPokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemon);
     }
 
     @Test
     public void createPokemonTest() {
-        Assert.assertEquals(pokemon.getIndex(), mockedPokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getIndex());
+        Assert.assertEquals(pokemon.getIndex(), pokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getIndex());
     }
 }

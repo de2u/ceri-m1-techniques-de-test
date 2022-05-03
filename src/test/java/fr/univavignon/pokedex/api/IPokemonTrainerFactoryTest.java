@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 
 public class IPokemonTrainerFactoryTest {
 
-    IPokemonTrainerFactory mockedPokemonTrainerFactory;
+    IPokemonTrainerFactory pokemonTrainerFactory;
     IPokedexFactory mockedPokedexFactory;
     IPokedex mockedPokedex;
     Team team;
@@ -18,14 +18,14 @@ public class IPokemonTrainerFactoryTest {
         mockedPokedex = Mockito.mock(IPokedex.class);
         team = Team.VALOR;
         trainer = new PokemonTrainer("Jean", team, mockedPokedex);
-        mockedPokemonTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
+        pokemonTrainerFactory = new PokemonTrainerFactory();
         mockedPokedexFactory = Mockito.mock(IPokedexFactory.class);
-        Mockito.when(mockedPokemonTrainerFactory.createTrainer("Jean", team, mockedPokedexFactory)).thenReturn(trainer);
+        //Mockito.when(mockedPokemonTrainerFactory.createTrainer("Jean", team, mockedPokedexFactory)).thenReturn(trainer);
     }
 
     @Test
     public void createTrainerTest() {
-        Assert.assertEquals(trainer.getName(), mockedPokemonTrainerFactory.createTrainer("Jean", team, mockedPokedexFactory).getName());
+        Assert.assertEquals(trainer.getName(), pokemonTrainerFactory.createTrainer("Jean", team, mockedPokedexFactory).getName());
     }
 
 }

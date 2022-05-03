@@ -10,11 +10,13 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
     public PokemonMetadataProvider() {
         pokemonMetadataList = new ArrayList<PokemonMetadata>();
         pokemonMetadataList.add(0, new PokemonMetadata(0, "Bulbizarre", 126, 126, 90));
-        pokemonMetadataList.add(133, new PokemonMetadata(133, "Aquali", 186, 168, 260));
+        //pokemonMetadataList.add(133, new PokemonMetadata(133, "Aquali", 186, 168, 260));
     }
 
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
+        if (index < 0 || index > 151)
+            throw new PokedexException("Invalid PokemonMetadata Id");
         try {
             return pokemonMetadataList.get(index);
         } catch (Exception e) {

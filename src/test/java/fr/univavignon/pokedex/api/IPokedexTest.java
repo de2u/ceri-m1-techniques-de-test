@@ -10,7 +10,9 @@ import java.util.List;
 
 public class IPokedexTest {
 
-    IPokedex mockedIPokedex;
+    IPokemonMetadataProvider mockedMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
+    IPokemonFactory mockedPokemonFactory = Mockito.mock(IPokemonFactory.class);
+    IPokedex pokedex;
     Pokemon p;
     List<Pokemon> lp = new ArrayList<>();
 
@@ -19,29 +21,38 @@ public class IPokedexTest {
         p = new Pokemon(1, "Toudoudou", 10, 40, 23, 34, 7, 3, 67, 10.0);
         lp.add(p);
         lp.add(p);
-        mockedIPokedex = Mockito.mock(IPokedex.class);
-        Mockito.when(mockedIPokedex.size()).thenReturn(0);
-        Mockito.when(mockedIPokedex.getPokemons()).thenReturn(lp);
+        pokedex = new Pokedex(mockedMetadataProvider, mockedPokemonFactory);
+        //Mockito.when(pokedex.size()).thenReturn(0);
+        //Mockito.when(pokedex.getPokemons()).thenReturn(lp);
     }
 
     @Test
     public void sizeTest() {
-        Assert.assertEquals(0, mockedIPokedex.size());
-        Mockito.when(mockedIPokedex.size()).thenReturn(1);
-        Assert.assertEquals(1, mockedIPokedex.size());
+        IPokedex pokedex2 = new Pokedex(mockedMetadataProvider, mockedPokemonFactory);
+        Assert.assertEquals(0, pokedex2.size());
+        //Mockito.when(pokedex.size()).thenReturn(1);
+        Pokemon p2 = new Pokemon(4, "Toudoudou", 10, 40, 23, 34, 7, 3, 67, 10.0);
+        pokedex2.addPokemon(p2);
+        Assert.assertEquals(1, pokedex2.size());
     }
 
     @Test
     public void addPokemonThrowsExceptionWhenNotAdded() throws PokedexException {
-        Mockito.when(mockedIPokedex.addPokemon(p)).thenReturn(1);
-        Mockito.when(mockedIPokedex.getPokemon(1)).thenReturn(p);
-        int id = mockedIPokedex.addPokemon(p);
-        Assert.assertEquals(p.getIndex(), mockedIPokedex.getPokemon(id).getIndex());
+        //Mockito.when(pokedex.addPokemon(p)).thenReturn(1);
+        //Mockito.when(pokedex.getPokemon(1)).thenReturn(p);
+        int id = pokedex.addPokemon(p);
+        Assert.assertEquals(p.getIndex(), pokedex.getPokemon(id).getIndex());
     }
 
     @Test
-    public void getPokemonsDoesntReturnList() {
-        Assert.assertEquals(lp.get(0).getIndex(), mockedIPokedex.getPokemons().get(0).getIndex());
+    public void getPokemonThrowsExceptionWhenIdInvalid() {
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(-1));
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(pokedex.size()));
+    }
+
+    @Test
+    public void getPokemonsIsWrongSize() {
+        Assert.assertEquals(pokedex.size(), pokedex.getPokemons().size());
     }
 
 }
