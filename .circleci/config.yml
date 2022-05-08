@@ -23,8 +23,11 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: Site
+          command: mvn site
       - store_artifacts:
-          path: target
+          path: target/site
       - codecov/upload:
           file:
 
