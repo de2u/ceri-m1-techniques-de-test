@@ -19,7 +19,10 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: mvn -B -DskipTests package clean
+          command: mvn -B -DskipTests clean package
+      - persist_to_workspace:
+          root: target
+          paths: apidocs
       - run:
           name: Test
           command: mvn test
