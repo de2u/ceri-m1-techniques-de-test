@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/de2u/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://circleci.com/gh/de2u/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/gh/de2u/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=WWO45UNQGW)](https://codecov.io/gh/de2u/ceri-m1-techniques-de-test)
+![checkstyle](badges/checkstyle-result.svg)
 
 Denis Werle  
 M1 Gr. IA classique

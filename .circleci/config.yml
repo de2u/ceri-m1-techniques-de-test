@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: target/site
+          at: target
       - run:
           name: Install and configure dependencies
           command: |
