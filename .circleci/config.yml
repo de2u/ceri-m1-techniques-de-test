@@ -54,7 +54,7 @@ jobs:
             - "7e:d9:9f:84:0e:1d:73:68:1e:db:03:f5:a5:75:02:c7"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist target/apidocs
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist target/apidocs
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
