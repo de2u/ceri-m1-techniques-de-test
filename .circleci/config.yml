@@ -20,6 +20,9 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests package clean
+      - persist_to_workspace:
+          root: target
+          paths: apidocs
       - run:
           name: Test
           command: mvn test
@@ -38,17 +41,20 @@ jobs:
       - attach_workspace:
           at: target
       - run:
+          name: Disable jekyll builds
+          command: touch target/apidocs/.nojekyll
+      - run:
           name: Install and configure dependencies
           command: |
             npm install -g --silent gh-pages@2.0.1
-            git config user.email "denis.werle@yahoo.fr"
-            git config user.name "de2u"
-      - run:
-          name: Deploy docs to gh-pages branch
-          command: gh-pages --dist target/site/apidocs
+            git config user.email "ci-build@dwerle.fr"
+            git config user.name "ci-build"
       - add_ssh_keys:
           fingerprints:
             - "05:80:35:0b:b5:8d:56:93:e3:57:57:ad:43:03:de:46"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist target/site/apidocs
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
