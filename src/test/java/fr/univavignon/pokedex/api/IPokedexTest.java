@@ -10,14 +10,17 @@ import java.util.List;
 
 public class IPokedexTest {
 
-    IPokemonMetadataProvider mockedMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
-    IPokemonFactory mockedPokemonFactory = Mockito.mock(IPokemonFactory.class);
+    IPokemonMetadataProvider mockedMetadataProvider;
+    IPokemonFactory mockedPokemonFactory;
     IPokedex pokedex;
     Pokemon p;
-    List<Pokemon> lp = new ArrayList<>();
+    List<Pokemon> lp;
 
     @Before
     public void init() {
+        mockedMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
+        mockedPokemonFactory = Mockito.mock(IPokemonFactory.class);
+        lp = new ArrayList<>();
         p = new Pokemon(1, "Toudoudou", 10, 40, 23, 34, 7, 3, 67, 10.0);
         lp.add(p);
         lp.add(p);
@@ -34,14 +37,24 @@ public class IPokedexTest {
         Pokemon p2 = new Pokemon(4, "Toudoudou", 10, 40, 23, 34, 7, 3, 67, 10.0);
         pokedex2.addPokemon(p2);
         Assert.assertEquals(1, pokedex2.size());
+        pokedex2.addPokemon(p2);
+        Assert.assertEquals(2, pokedex2.size());
     }
 
     @Test
-    public void addPokemonThrowsExceptionWhenNotAdded() throws PokedexException {
+    public void addPokemonReturnsWrongId() {
+        int expected_int = pokedex.size();
+        int returned_int = pokedex.addPokemon(p);
+        Assert.assertEquals(expected_int, returned_int);
+    }
+
+    @Test
+    public void addPokemonReturnsWrongPokemon() throws PokedexException {
         //Mockito.when(pokedex.addPokemon(p)).thenReturn(1);
         //Mockito.when(pokedex.getPokemon(1)).thenReturn(p);
         int id = pokedex.addPokemon(p);
         Assert.assertEquals(p.getIndex(), pokedex.getPokemon(id).getIndex());
+        Assert.assertEquals(p.getName(), pokedex.getPokemon(id).getName());
     }
 
     @Test

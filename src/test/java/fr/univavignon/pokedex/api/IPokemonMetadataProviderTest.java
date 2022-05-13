@@ -12,7 +12,7 @@ public class IPokemonMetadataProviderTest {
 
 
     @Before
-    public void init() throws PokedexException {
+    public void init() {
         metadataProvider = new PokemonMetadataProvider();
         pokemonMetadata = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
         //Mockito.when(mockedMetadataProvider.getPokemonMetadata(pokemonMetadata.getIndex())).thenReturn(pokemonMetadata);
