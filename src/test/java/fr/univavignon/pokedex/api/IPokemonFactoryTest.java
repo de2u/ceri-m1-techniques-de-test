@@ -15,7 +15,7 @@ public class IPokemonFactoryTest {
     public void init() {
         mockedMetadataProvider = new PokemonMetadataProvider();
         pokemon = new Pokemon(0, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
-        pokemonFactory = new PokemonFactory(mockedMetadataProvider);
+        pokemonFactory = new RocketPokemonFactory();
         //Mockito.when(mockedPokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemon);
     }
 
